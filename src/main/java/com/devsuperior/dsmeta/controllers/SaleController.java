@@ -36,14 +36,14 @@ public class SaleController {
 
     }
 
-
+/*
 	@GetMapping(value = "/report")
 	public ResponseEntity<Page<SaleMinDTO>> searchByName() {
 
 		return null;
 
 	}
-
+*/
 
 
     @GetMapping(value = "/summary")
