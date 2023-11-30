@@ -1,5 +1,7 @@
 package com.devsuperior.dsmeta.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -20,6 +22,7 @@ public class Sale {
 	private Integer visited;
 	private Integer deals;
 	private Double amount;
+	@DateTimeFormat
 	private LocalDate date;
 	
 	@ManyToOne
