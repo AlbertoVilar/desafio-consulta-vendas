@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
+
 public interface SaleRepository extends JpaRepository<Sale, Long> {
     @Query(value = "SELECT obj " +
             "FROM Sale obj " +
@@ -14,11 +16,23 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
             "BETWEEN :minDate " +
             "AND :maxDate " +
             "AND UPPER(obj.seller.name) LIKE UPPER(CONCAT('%', :name, '%')) ")
-    Page<Sale> searchByDateAndName(
-                            @Param("minDate") String minDate,
-                            @Param("maxDate") String maxDate,
-                            @Param("name") String name,
-                            Pageable pageable);
+    Page<Sale> searchByDateAndName( LocalDate minDate,
+                                   LocalDate maxDate,
+                                   String name,
+                                   Pageable pageable);
+
+
+
+    @Query(value = "SELECT obj, obj.seller.name, SUM(obj.amount) " +
+            "FROM Sale obj " +
+            "WHERE obj.date BETWEEN :minDate AND :maxDate " +
+            "GROUP BY obj.seller.name")
+    Page<Sale> searchByDateSeller(@Param("minDate") LocalDate minDate,
+                                         @Param("maxDate") LocalDate maxDate, Pageable pageable);
+
+
 
 
 }
+
+

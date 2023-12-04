@@ -13,11 +13,11 @@ public class SaleMinDTO {
 	private SellerMinDTO sellerMinDTO;
 
 	
-	public SaleMinDTO(Long id, Double amount, LocalDate date, SellerMinDTO sellerMinDTO) {
+	public SaleMinDTO(Long id, Double amount, LocalDate date) {
 		this.id = id;
 		this.amount = amount;
 		this.date = date;
-		this.sellerMinDTO = sellerMinDTO;
+
 	}
 	
 	public SaleMinDTO(Sale entity) {

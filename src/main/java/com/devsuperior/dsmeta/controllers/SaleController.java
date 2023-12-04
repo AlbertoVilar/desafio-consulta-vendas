@@ -29,28 +29,26 @@ public class SaleController {
             @RequestParam(value = "maxDate") String maxDate,
             @RequestParam(value = "name", defaultValue = "") String name, Pageable pageable) {
 
-
         Page<SaleMinDTO> dto = service.getReport(minDate, maxDate, name, pageable);
 
         return ResponseEntity.ok(dto);
 
     }
 
-/*
-	@GetMapping(value = "/report")
-	public ResponseEntity<Page<SaleMinDTO>> searchByName() {
-
-		return null;
-
-	}
-*/
-
 
     @GetMapping(value = "/summary")
-    public ResponseEntity<?> getSummary() {
-        // TODO
-        return null;
+    public ResponseEntity<Page<SaleMinDTO>> getSummary(
+
+            @RequestParam(value = "minDate") String minDate,
+            @RequestParam(value = "maxDate") String maxDate,
+            Pageable pageable) {
+
+        Page<SaleMinDTO> dto = service.getSummary(minDate, maxDate, pageable);
+        return ResponseEntity.ok(dto);
+
     }
+
+
 }
 
 
